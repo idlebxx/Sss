@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأدوات - سايبركس</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+    
+    <nav class="navbar">
+        <div class="nav-brand">🛠️ سايبر<span>كس</span></div>
+        <div class="nav-links">
+            <a href="index.html">الرئيسية</a>
+            <a href="tools.html" class="active">الأدوات</a>
+            <a href="design-request.html">تصميم مواقع</a>
+            <a href="ban-service.html">فك الباند</a>
+            <a href="recharge.html">شحن رصيد</a>
+            <a href="admin.html" class="admin-btn">المدير</a>
+        </div>
+        <div class="menu-toggle">☰</div>
+    </nav>
+
+    <main class="container">
+        <div class="section-header" style="text-align:center; margin:2rem 0;">
+            <span class="badge" style="color:#ff1a1a;">/// متجر الأدوات</span>
+            <h1>أدوات <span class="highlight">الاختراق الأخلاقي</span></h1>
+            <p>أدوات احترافية مطورة خصيصاً لاختبار الاختراق والحماية</p>
+        </div>
+
+        <!-- فلتر البحث -->
+        <div class="filter-section" style="display:flex; gap:1rem; margin:2rem 0; flex-wrap:wrap;">
+            <input type="text" id="searchTools" placeholder="🔍 ابحث عن أداة..." class="form-control" style="flex:2; padding:0.8rem; border-radius:12px; background:#111; border:1px solid #ff1a1a; color:white;">
+            <select id="categoryFilter" class="form-control" style="flex:1; padding:0.8rem; border-radius:12px; background:#111; border:1px solid #ff1a1a; color:white;">
+                <option value="all">الكل</option>
+                <option value="tool">أدوات الشبكات</option>
+                <option value="design">أدوات الويب</option>
+                <option value="ban">أدوات الجوال</option>
+            </select>
+        </div>
+
+        <!-- عرض المنتجات -->
+        <div class="products-grid" id="tools-container"></div>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 سايبركس - جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script src="3d-background.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
