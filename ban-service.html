@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خدمات فك الباند - سايبركس</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+    
+    <nav class="navbar">
+        <div class="nav-brand">🔒 سايبر<span>كس</span></div>
+        <div class="nav-links">
+            <a href="index.html">الرئيسية</a>
+            <a href="tools.html">الأدوات</a>
+            <a href="design-request.html">تصميم مواقع</a>
+            <a href="ban-service.html" class="active">فك الباند</a>
+            <a href="recharge.html">شحن رصيد</a>
+            <a href="admin.html" class="admin-btn">المدير</a>
+        </div>
+        <div class="menu-toggle">☰</div>
+    </nav>
+
+    <main class="container">
+        <div class="section-header" style="text-align:center; margin:2rem 0;">
+            <span class="badge" style="color:#ff1a1a;">/// خدمات الاسترجاع</span>
+            <h1>فك <span class="highlight">الباند والاسترجاع</span></h1>
+            <p>استعد حسابك المحظور بأسرع وقت وبضمان 100%</p>
+        </div>
+
+        <!-- بطاقات الخدمات -->
+        <div class="services-cards">
+            <div class="service-card glass" data-service="instagram">
+                <div class="service-icon">📷</div>
+                <h3>فك باند انستقرام</h3>
+                <p>استرجاع الحسابات المحظورة أو المقيدة</p>
+                <div class="service-features" style="display:flex; gap:0.5rem; justify-content:center; flex-wrap:wrap;">
+                    <span style="background:rgba(255,26,26,0.2); padding:0.2rem 0.8rem; border-radius:20px;">✅ ضمان 30 يوم</span>
+                    <span style="background:rgba(255,26,26,0.2); padding:0.2rem 0.8rem; border-radius:20px;">⚡ خلال 24 ساعة</span>
+                </div>
+                <div class="service-price" id="insta-price">جاري التحميل...</div>
+                <button class="select-service submit-btn" data-service="instagram" style="width:auto; padding:0.5rem 1.5rem;">اختر الخدمة</button>
+            </div>
+
+            <div class="service-card glass" data-service="facebook">
+                <div class="service-icon">📘</div>
+                <h3>فك باند فيسبوك</h3>
+                <p>حل مشكلة الحظر الدائم والمؤقت</p>
+                <div class="service-features" style="display:flex; gap:0.5rem; justify-content:center; flex-wrap:wrap;">
+                    <span style="background:rgba(255,26,26,0.2); padding:0.2rem 0.8rem; border-radius:20px;">✅ ضمان 60 يوم</span>
+                    <span style="background:rgba(255,26,26,0.2); padding:0.2rem 0.8rem; border-radius:20px;">⚡ خلال 48 ساعة</span>
+                </div>
+                <div class="service-price" id="fb-price">جاري التحميل...</div>
+                <button class="select-service submit-btn" data-service="facebook" style="width:auto; padding:0.5rem 1.5rem;">اختر الخدمة</button>
+            </div>
+
+            <div class="service-card glass" data-service="tiktok">
+                <div class="service-icon">🎵</div>
+                <h3>فك باند تيك توك</h3>
+                <p>استعادة حسابك المحظور من تيك توك</p>
+                <div class="service-features" style="display:flex; gap:0.5rem; justify-content:center; flex-wrap:wrap;">
+                    <span style="background:rgba(255,26,26,0.2); padding:0.2rem 0.8rem; border-radius:20px;">✅ ضمان 30 يوم</span>
+                    <span style="background:rgba(255,26,26,0.2); padding:0.2rem 0.8rem; border-radius:20px;">⚡ خلال 24 ساعة</span>
+                </div>
+                <div class="service-price" id="tt-price">جاري التحميل...</div>
+                <button class="select-service submit-btn" data-service="tiktok" style="width:auto; padding:0.5rem 1.5rem;">اختر الخدمة</button>
+            </div>
+
+            <div class="service-card glass" data-service="youtube">
+                <div class="service-icon">📺</div>
+                <h3>رفع حظر يوتيوب</h3>
+                <p>استرجاع القنوات المحظورة من يوتيوب</p>
+                <div class="service-features" style="display:flex; gap:0.5rem; justify-content:center; flex-wrap:wrap;">
+                    <span style="background:rgba(255,26,26,0.2); padding:0.2rem 0.8rem; border-radius:20px;">✅ ضمان 90 يوم</span>
+                    <span style="background:rgba(255,26,26,0.2); padding:0.2rem 0.8rem; border-radius:20px;">⚡ خلال 72 ساعة</span>
+                </div>
+                <div class="service-price" id="yt-price">جاري التحميل...</div>
+                <button class="select-service submit-btn" data-service="youtube" style="width:auto; padding:0.5rem 1.5rem;">اختر الخدمة</button>
+            </div>
+        </div>
+
+        <!-- نموذج الطلب -->
+        <div class="ban-form glass" id="ban-form" style="display: none; padding:2rem; margin:2rem 0;">
+            <div class="form-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+                <h2 style="color:#ff1a1a;">📝 طلب فك الباند</h2>
+                <button onclick="closeForm()" style="background:none; border:none; color:#ff1a1a; font-size:1.5rem; cursor:pointer;">✖️</button>
+            </div>
+            <form id="ban-request-form">
+                <div class="form-group">
+                    <label>نوع الخدمة</label>
+                    <input type="text" id="service-type" readonly class="readonly-input" style="background:#1a1a1a;">
+                </div>
+                <div class="form-group">
+                    <label>💰 السعر المتفق عليه</label>
+                    <input type="text" id="service-price" readonly class="readonly-input" style="background:#1a1a1a;">
+                </div>
+                <div class="form-group">
+                    <label>🔗 رابط الحساب المحظور *</label>
+                    <input type="url" id="account-url" required placeholder="https://www.instagram.com/username">
+                </div>
+                <div class="form-group">
+                    <label>📧 البريد الإلكتروني المسجل *</label>
+                    <input type="email" id="account-email" required placeholder="example@email.com">
+                </div>
+                <div class="form-group">
+                    <label>📱 رقم الجوال المسجل</label>
+                    <input type="tel" id="account-phone" placeholder="مثال: 96171234567">
+                </div>
+                <div class="form-group">
+                    <label>💬 سبب الحظر (إن وجد)</label>
+                    <textarea id="ban-reason" rows="3" placeholder="اذكر سبب الحظر إذا كنت تعرفه..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>📞 رقم واتساب للتواصل *</label>
+                    <input type="tel" id="whatsapp-number" required placeholder="مثال: 96171234567">
+                    <small>سيتم التواصل معك عبر هذا الرقم لتسليم الحساب</small>
+                </div>
+                <div class="form-group">
+                    <label>📝 ملاحظات إضافية</label>
+                    <textarea id="additional-notes" rows="3" placeholder="أي معلومات إضافية تريد إضافتها..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">📤 إرسال الطلب</button>
+            </form>
+        </div>
+
+        <!-- شروط الخدمة -->
+        <div class="terms-box" style="background:rgba(255,26,26,0.1); padding:1.5rem; border-radius:16px; margin:2rem 0; border-right:3px solid #ff1a1a;">
+            <h3 style="color:#ff1a1a;">📋 شروط الخدمة</h3>
+            <ul style="margin-top:0.5rem; padding-right:1.5rem;">
+                <li>يتم الدفع المبلغ كامل قبل الاستلام</li>
+                <li>ضمان استرجاع كامل المبلغ في حال الفشل</li>
+                <li>مدة الخدمة تختلف حسب نوع الحظر</li>
+                <li>البيانات خاصة ولن يتم مشاركتها مع أي جهة</li>
+            </ul>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 سايبركس - جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script src="3d-background.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
