@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طلب تصميم - سايبركس</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+    
+    <nav class="navbar">
+        <div class="nav-brand">🎨 سايبر<span>كس</span></div>
+        <div class="nav-links">
+            <a href="index.html">الرئيسية</a>
+            <a href="tools.html">الأدوات</a>
+            <a href="design-request.html" class="active">تصميم مواقع</a>
+            <a href="ban-service.html">فك الباند</a>
+            <a href="recharge.html">شحن رصيد</a>
+            <a href="admin.html" class="admin-btn">المدير</a>
+        </div>
+        <div class="menu-toggle">☰</div>
+    </nav>
+
+    <main class="container">
+        <div class="section-header" style="text-align:center; margin:2rem 0;">
+            <span class="badge" style="color:#ff1a1a;">/// خدمات التصميم</span>
+            <h1>طلب <span class="highlight">تصميم وبرمجة</span> موقع</h1>
+            <p>احصل على موقع احترافي يناسب احتياجاتك</p>
+        </div>
+
+        <div class="request-form-container glass" style="padding:2rem;">
+            <div class="price-info" style="background:rgba(255,26,26,0.1); padding:1rem; border-radius:16px; margin-bottom:2rem;">
+                <h3 style="color:#ff1a1a;">💰 الأسعار الأساسية</h3>
+                <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:0.5rem; margin-top:0.5rem;">
+                    <p>موقع بسيط: <span id="simple-price" style="color:#ff1a1a;">$200</span></p>
+                    <p>موقع متكامل: <span id="full-price" style="color:#ff1a1a;">$500</span></p>
+                    <p>متجر إلكتروني: <span id="store-price" style="color:#ff1a1a;">$800</span></p>
+                    <p>منصة متقدمة: <span id="advanced-price" style="color:#ff1a1a;">$1500</span></p>
+                </div>
+                <small>* يتم تحديد السعر النهائي حسب المتطلبات</small>
+            </div>
+
+            <form id="design-request-form">
+                <div class="form-group">
+                    <label>📛 اسم الشركة / المتجر *</label>
+                    <input type="text" id="company-name" required placeholder="مثال: شركة التقنية المحدودة">
+                </div>
+
+                <div class="form-group">
+                    <label>🌐 اسم الموقع المقترح *</label>
+                    <input type="text" id="site-name" required placeholder="مثال: mybusiness.com">
+                </div>
+
+                <div class="form-group">
+                    <label>🏷️ نوع الموقع *</label>
+                    <select id="site-type" required>
+                        <option value="">اختر نوع الموقع</option>
+                        <option value="personal">موقع شخصي</option>
+                        <option value="business">موقع شركة</option>
+                        <option value="store">متجر إلكتروني</option>
+                        <option value="blog">مدونة</option>
+                        <option value="portfolio">معرض أعمال</option>
+                        <option value="platform">منصة متكاملة</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>📄 عدد الصفحات المطلوبة *</label>
+                    <input type="number" id="pages-count" min="1" max="50" required placeholder="مثال: 5">
+                </div>
+
+                <div class="form-group">
+                    <label>🎨 الألوان المفضلة</label>
+                    <input type="text" id="colors" placeholder="مثال: أحمر, أسود, أبيض">
+                </div>
+
+                <div class="form-group">
+                    <label>✨ الميزات المطلوبة</label>
+                    <div class="checkbox-group" style="display:grid; grid-template-columns:repeat(2,1fr); gap:0.5rem;">
+                        <label><input type="checkbox" value="dashboard"> لوحة تحكم</label>
+                        <label><input type="checkbox" value="payment"> بوابة دفع</label>
+                        <label><input type="checkbox" value="chat"> دردشة مباشرة</label>
+                        <label><input type="checkbox" value="api"> API مخصص</label>
+                        <label><input type="checkbox" value="multilingual"> دعم عدة لغات</label>
+                        <label><input type="checkbox" value="responsive"> تصميم متجاوب</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>📝 متطلبات إضافية</label>
+                    <textarea id="requirements" rows="4" placeholder="اذكر أي متطلبات إضافية تريدها في موقعك..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>📞 رقم واتساب للتواصل *</label>
+                    <input type="tel" id="whatsapp-number" required placeholder="مثال: 96171234567">
+                    <small>سيتم التواصل معك عبر هذا الرقم</small>
+                </div>
+
+                <div class="form-group">
+                    <label>📧 البريد الإلكتروني</label>
+                    <input type="email" id="email" placeholder="example@email.com">
+                </div>
+
+                <button type="submit" class="submit-btn">🚀 إرسال الطلب</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 سايبركس - جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script src="3d-background.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
