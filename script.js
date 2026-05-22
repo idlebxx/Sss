@@ -282,4 +282,49 @@ document.querySelectorAll('.select-service').forEach(btn => {
         };
         const priceMap = {
             instagram: document.getElementById('insta-price')?.innerText || '$50',
-            facebook: document.getElementById('fb-price')
+            facebook: document.getElementById('fb-price')?.innerText || '$60',
+            tiktok: document.getElementById('tt-price')?.innerText || '$55',
+            youtube: document.getElementById('yt-price')?.innerText || '$70'
+        };
+        const serviceTypeInput = document.getElementById('service-type');
+        const servicePriceInput = document.getElementById('service-price');
+        if (serviceTypeInput) serviceTypeInput.value = serviceNames[service];
+        if (servicePriceInput) servicePriceInput.value = priceMap[service];
+        const banFormDiv = document.getElementById('ban-form');
+        if (banFormDiv) {
+            banFormDiv.style.display = 'block';
+            banFormDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
+
+// البحث والفلترة
+const searchInput = document.getElementById('searchTools');
+const categoryFilter = document.getElementById('categoryFilter');
+if (searchInput && categoryFilter) {
+    function filterProducts() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const category = categoryFilter.value;
+        const filtered = products.filter(product => {
+            const matchesSearch = product.name.toLowerCase().includes(searchTerm) || (product.desc && product.desc.toLowerCase().includes(searchTerm));
+            const matchesCategory = category === 'all' || product.category === category;
+            return matchesSearch && matchesCategory;
+        });
+        const container = document.getElementById('tools-container');
+        if (container) displayProducts(container, filtered);
+    }
+    searchInput.addEventListener('input', filterProducts);
+    categoryFilter.addEventListener('change', filterProducts);
+}
+
+function setupEventListeners() {
+    window.addEventListener('scroll', () => {
+        document.querySelectorAll('.glass').forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 100) {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }
+        });
+    });
+            }
