@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - سايبركس</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+    
+    <nav class="navbar">
+        <div class="nav-brand">👑 لوحة <span>التحكم</span></div>
+        <div class="nav-links">
+            <a href="index.html">الرئيسية</a>
+            <button onclick="logout()" class="admin-btn" style="background:#ff1a1a;">🚪 خروج</button>
+        </div>
+        <div class="menu-toggle">☰</div>
+    </nav>
+
+    <main class="container">
+        <div class="admin-tabs">
+            <button class="tab-btn active" onclick="showTab('products')">📦 المنتجات</button>
+            <button class="tab-btn" onclick="showTab('prices')">💰 الأسعار</button>
+            <button class="tab-btn" onclick="showTab('orders')">📋 الطلبات</button>
+            <button class="tab-btn" onclick="showTab('settings')">⚙️ الإعدادات</button>
+        </div>
+
+        <!-- تبويب المنتجات -->
+        <div id="products-tab" class="admin-tab active">
+            <div class="admin-panel glass">
+                <h2 style="color:#ff1a1a; margin-bottom:1.5rem;">➕ إضافة منتج جديد</h2>
+                <div class="add-product-form">
+                    <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                        <input type="text" id="product-name" placeholder="اسم المنتج" class="form-control">
+                        <select id="product-category" class="form-control">
+                            <option value="tool">أداة أمنية</option>
+                            <option value="design">خدمة تصميم</option>
+                            <option value="ban">خدمة باند</option>
+                        </select>
+                    </div>
+                    <textarea id="product-desc" placeholder="وصف المنتج" rows="3" class="form-control" style="margin:1rem 0; width:100%;"></textarea>
+                    <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                        <input type="number" id="product-price" placeholder="السعر $" class="form-control">
+                        <input type="url" id="product-image" placeholder="رابط الصورة" class="form-control">
+                    </div>
+                    <button onclick="addProduct()" class="submit-btn" style="margin-top:1rem;">➕ إضافة المنتج</button>
+                </div>
+
+                <div class="products-list" style="margin-top:2rem;">
+                    <h2 style="color:#ff1a1a;">📦 المنتجات الحالية</h2>
+                    <div id="products-container" class="products-grid"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- تبويب الأسعار -->
+        <div id="prices-tab" class="admin-tab">
+            <div class="admin-panel glass">
+                <h2 style="color:#ff1a1a;">💰 تعديل الأسعار</h2>
+                <div class="prices-form">
+                    <div class="price-group" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem;">
+                        <label>سعر تصميم موقع بسيط:</label>
+                        <input type="number" id="simple-design-price" class="price-input form-control">
+                    </div>
+                    <div class="price-group" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem;">
+                        <label>سعر تصميم موقع متكامل:</label>
+                        <input type="number" id="full-design-price" class="price-input form-control">
+                    </div>
+                    <div class="price-group" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem;">
+                        <label>سعر تصميم متجر إلكتروني:</label>
+                        <input type="number" id="store-design-price" class="price-input form-control">
+                    </div>
+                    <div class="price-group" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem;">
+                        <label>سعر منصة متقدمة:</label>
+                        <input type="number" id="advanced-design-price" class="price-input form-control">
+                    </div>
+                    <div class="price-group" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem;">
+                        <label>سعر فك باند انستقرام:</label>
+                        <input type="number" id="insta-ban-price" class="price-input form-control">
+                    </div>
+                    <div class="price-group" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem;">
+                        <label>سعر فك باند فيسبوك:</label>
+                        <input type="number" id="fb-ban-price" class="price-input form-control">
+                    </div>
+                    <div class="price-group" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem;">
+                        <label>سعر فك باند تيك توك:</label>
+                        <input type="number" id="tt-ban-price" class="price-input form-control">
+                    </div>
+                    <div class="price-group" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem;">
+                        <label>سعر رفع حظر يوتيوب:</label>
+                        <input type="number" id="yt-ban-price" class="price-input form-control">
+                    </div>
+                    <button onclick="updateAllPrices()" class="submit-btn">💾 حفظ جميع الأسعار</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- تبويب الطلبات -->
+        <div id="orders-tab" class="admin-tab">
+            <div class="admin-panel glass">
+                <h2 style="color:#ff1a1a;">📋 الطلبات الواردة</h2>
+                <div id="orders-container">
+                    <p>جاري تحميل الطلبات...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- تبويب الإعدادات -->
+        <div id="settings-tab" class="admin-tab">
+            <div class="admin-panel glass">
+                <h2 style="color:#ff1a1a;">⚙️ إعدادات البوت والإشعارات</h2>
+                <div class="settings-form">
+                    <div class="form-group">
+                        <label>🤖 توكن بوت التليجرام:</label>
+                        <input type="text" id="bot-token" placeholder="أدخل توكن البوت" class="form-control">
+                        <small>احصل عليه من @BotFather</small>
+                    </div>
+                    <div class="form-group">
+                        <label>🆔 معرف الشات (Chat ID):</label>
+                        <input type="text" id="chat-id" placeholder="أدخل chat id" class="form-control">
+                        <small>احصل عليه من @userinfobot</small>
+                    </div>
+                    <div class="form-group">
+                        <label>💰 رقم محفظة شام كاش:</label>
+                        <input type="text" id="sham-cash-number" placeholder="رقم المحفظة" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>🖼️ صورة شخصية (رابط):</label>
+                        <input type="url" id="profile-image" placeholder="رابط الصورة" class="form-control">
+                    </div>
+                    <button onclick="saveSettings()" class="submit-btn">💾 حفظ الإعدادات</button>
+                </div>
+                
+                <div class="backup-section" style="margin-top:2rem; padding-top:1.5rem; border-top:1px solid rgba(255,26,26,0.3);">
+                    <h3 style="color:#ff1a1a;">📦 النسخ الاحتياطي</h3>
+                    <div style="display:flex; gap:1rem; margin-top:1rem;">
+                        <button onclick="backupData()" class="backup-btn" style="background:#ff1a1a;">📥 تحميل نسخة احتياطية</button>
+                        <button onclick="restoreData()" class="restore-btn" style="background:#cc0000;">📤 استعادة نسخة احتياطية</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 SYPER STORE - لوحة تحكم المدير</p>
+    </footer>
+
+    <script src="3d-background.js"></script>
+    <script src="admin.js"></script>
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+    </script>
+</body>
+          </html>
